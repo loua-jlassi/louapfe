@@ -50,10 +50,19 @@ input[type="password"]:focus {
 .remember-me-container {
   display: flex;
   align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .remember-me-container input[type="checkbox"] {
-  margin-right: 10px;
+  margin: 0;
+  width: auto;
+}
+
+.remember-me-container label {
+  margin: 0;
+  display: inline;
+  font-weight: normal;
 }
 
 .error {

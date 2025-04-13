@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./RegistrationForm.css";
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -13,6 +16,7 @@ const RegistrationForm = () => {
     password: "",
     confirmPassword: "",
     agreeTerms: false,
+    accountType: "free",
   });
 
   const [errors, setErrors] = useState({});
@@ -95,9 +99,38 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     if (validate()) {
-      console.log("Formulaire soumis avec succès:", formData);
+      // Vérifier si l'email existe déjà
+      const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+      if (existingUsers.some((user) => user.email === formData.email)) {
+        setErrors({
+          email: "Cet email est déjà utilisé",
+        });
+        return;
+      }
+
+      // Sauvegarder l'utilisateur
+      const newUser = {
+        ...formData,
+        id: Date.now(),
+        createdAt: new Date().toISOString(),
+      };
+
+      existingUsers.push(newUser);
+      localStorage.setItem("users", JSON.stringify(existingUsers));
+
+      // Connecter l'utilisateur
+      const {
+        password,
+        confirmPassword,
+        agreeTerms,
+        ...userWithoutSensitiveData
+      } = newUser;
+      login(userWithoutSensitiveData);
+
       setIsSubmitted(true);
-      // Ici, vous pourriez appeler une API pour enregistrer l'utilisateur
+      setTimeout(() => {
+        navigate("/features");
+      }, 1500);
     }
   };
 
@@ -110,6 +143,11 @@ const RegistrationForm = () => {
           à notre catalogue de fonctionnalités.
         </p>
         <p>Un email de confirmation a été envoyé à {formData.email}.</p>
+        <p>
+          Type de compte:{" "}
+          {formData.accountType === "free" ? "Gratuit" : "Premium"}
+        </p>
+        <p>Redirection vers la page des fonctionnalités...</p>
       </div>
     );
   }
@@ -243,6 +281,56 @@ const RegistrationForm = () => {
           {errors.confirmPassword && (
             <span className="error-message">{errors.confirmPassword}</span>
           )}
+        </div>
+
+        <div className="form-group">
+          <label>Type de compte*</label>
+          <div className="account-type-container">
+            <div
+              className={`account-type-option ${
+                formData.accountType === "free" ? "selected" : ""
+              }`}
+            >
+              <input
+                type="radio"
+                id="accountTypeFree"
+                name="accountType"
+                value="free"
+                checked={formData.accountType === "free"}
+                onChange={handleChange}
+              />
+              <label htmlFor="accountTypeFree" className="account-type-label">
+                <span className="account-type-title">Gratuit</span>
+                <span className="account-type-description">
+                  Accès limité aux fonctionnalités de base
+                </span>
+              </label>
+            </div>
+            <div
+              className={`account-type-option ${
+                formData.accountType === "premium" ? "selected" : ""
+              }`}
+            >
+              <input
+                type="radio"
+                id="accountTypePremium"
+                name="accountType"
+                value="premium"
+                checked={formData.accountType === "premium"}
+                onChange={handleChange}
+              />
+              <label
+                htmlFor="accountTypePremium"
+                className="account-type-label"
+              >
+                <span className="account-type-title">Premium</span>
+                <span className="account-type-description">
+                  Accès complet à toutes les fonctionnalités
+                </span>
+                <span className="account-type-price">9.99€/mois</span>
+              </label>
+            </div>
+          </div>
         </div>
 
         <div className="form-group">

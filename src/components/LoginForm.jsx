@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./LoginForm.css";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -45,9 +48,25 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (validate()) {
-      console.log("Connexion réussie:", formData);
-      setIsSubmitted(true);
-      // Ici, vous pourriez appeler une API pour authentifier l'utilisateur
+      // Simuler une vérification des identifiants
+      // Dans une vraie application, vous feriez un appel API ici
+      const mockUsers = JSON.parse(localStorage.getItem("users") || "[]");
+      const user = mockUsers.find(
+        (u) => u.email === formData.email && u.password === formData.password
+      );
+
+      if (user) {
+        const { password, ...userWithoutPassword } = user;
+        login(userWithoutPassword);
+        setIsSubmitted(true);
+        setTimeout(() => {
+          navigate("/features");
+        }, 1500);
+      } else {
+        setErrors({
+          auth: "Email ou mot de passe incorrect",
+        });
+      }
     }
   };
 
@@ -55,7 +74,7 @@ const LoginForm = () => {
     return (
       <div className="form-container success-message">
         <h2>Connexion réussie!</h2>
-        <p>Bienvenue dans votre espace personnel.</p>
+        <p>Redirection vers la page des fonctionnalités...</p>
       </div>
     );
   }
@@ -64,6 +83,9 @@ const LoginForm = () => {
     <div className="form-container">
       <h2>Connexion</h2>
       <form onSubmit={handleSubmit}>
+        {errors.auth && (
+          <div className="error-message auth-error">{errors.auth}</div>
+        )}
         <div className="form-group">
           <label htmlFor="email">Email*</label>
           <input
