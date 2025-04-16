@@ -1,0 +1,566 @@
+/* 
+ * Animations & Transitions
+ * Ce fichier contient toutes les animations et transitions 
+ * pour améliorer l'expérience utilisateur de l'application
+ */
+
+/* Variables d'animation */
+:root {
+  --transition-speed-slow: 0.5s;
+  --transition-speed-normal: 0.3s;
+  --transition-speed-fast: 0.2s;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-distance: 20px;
+  --animation-speed-slow: 800ms;
+  --animation-speed-normal: 500ms;
+  --animation-speed-fast: 300ms;
+}
+
+/* ========= TRANSITIONS DE PAGE ========= */
+
+/* Animation de transition de page - utilisé par CSSTransition dans App.jsx */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(50px);
+  position: absolute;
+  width: 100%;
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 500ms ease-out;
+  position: absolute;
+  width: 100%;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+  position: absolute;
+  width: 100%;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: all 500ms ease-in;
+  position: absolute;
+  width: 100%;
+}
+
+/* Route fade transitions */
+.route-fade-enter {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.route-fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+  position: absolute;
+  width: 100%;
+}
+
+.route-fade-exit {
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+}
+
+.route-fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+  position: absolute;
+  width: 100%;
+}
+
+/* Slide transitions for pages */
+.slide-right-enter {
+  transform: translateX(-100%);
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.slide-right-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 500ms ease-out;
+  position: absolute;
+  width: 100%;
+}
+
+.slide-right-exit {
+  transform: translateX(0);
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+}
+
+.slide-right-exit-active {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 500ms ease-in;
+  position: absolute;
+  width: 100%;
+}
+
+.slide-left-enter {
+  transform: translateX(100%);
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.slide-left-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 500ms ease-out;
+  position: absolute;
+  width: 100%;
+}
+
+.slide-left-exit {
+  transform: translateX(0);
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+}
+
+.slide-left-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 500ms ease-in;
+  position: absolute;
+  width: 100%;
+}
+
+/* Zoom transitions for pages */
+.zoom-page-enter {
+  transform: scale(0.75);
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.zoom-page-enter-active {
+  transform: scale(1);
+  opacity: 1;
+  transition: all 500ms ease-out;
+  position: absolute;
+  width: 100%;
+}
+
+.zoom-page-exit {
+  transform: scale(1);
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+}
+
+.zoom-page-exit-active {
+  transform: scale(1.25);
+  opacity: 0;
+  transition: all 500ms ease-in;
+  position: absolute;
+  width: 100%;
+}
+
+/* ========= ANIMATIONS D'ÉLÉMENTS ========= */
+
+/* Apparition en fondu */
+.fade-in {
+  animation: fadeIn var(--animation-speed-normal) ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut var(--animation-speed-normal) ease forwards;
+}
+
+/* Apparition par le bas */
+.slide-up {
+  animation: slideUp var(--animation-speed-normal) ease forwards;
+}
+
+.slide-down {
+  animation: slideDown var(--animation-speed-normal) ease forwards;
+}
+
+/* Apparition par la droite */
+.slide-in-right {
+  animation: slideInRight var(--transition-speed-normal)
+    var(--transition-timing);
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(var(--animation-distance));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Apparition par la gauche */
+.slide-in-left {
+  animation: slideInLeft var(--transition-speed-normal) var(--transition-timing);
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--animation-distance) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation de zoom */
+.zoom-in {
+  animation: zoomIn var(--animation-speed-normal) ease forwards;
+}
+
+.zoom-out {
+  animation: zoomOut var(--animation-speed-normal) ease forwards;
+}
+
+/* Animation séquentielle pour les listes */
+.staggered-item {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.staggered-item-enter {
+  animation: staggeredItem var(--animation-speed-normal) ease forwards;
+}
+
+@keyframes staggeredItem {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========= ANIMATIONS D'INTERACTION ========= */
+
+/* Effet d'échelle sur les boutons */
+.scale-on-hover {
+  transition: transform var(--transition-speed-fast) var(--transition-timing);
+}
+
+.scale-on-hover:hover,
+.scale-on-hover:focus {
+  transform: scale(1.05);
+}
+
+/* Effet d'élévation pour les cartes */
+.elevation-on-hover {
+  transition: box-shadow var(--transition-speed-normal) var(--transition-timing),
+    transform var(--transition-speed-normal) var(--transition-timing);
+}
+
+.elevation-on-hover:hover,
+.elevation-on-hover:focus {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Effet de surbrillance pour les éléments interactifs */
+.highlight-on-hover {
+  transition: background-color var(--transition-speed-fast)
+    var(--transition-timing);
+}
+
+.highlight-on-hover:hover,
+.highlight-on-hover:focus {
+  background-color: rgba(84, 104, 255, 0.1);
+}
+
+/* ========= ANIMATIONS DE CHARGEMENT ========= */
+
+/* Spinner de chargement */
+.loading-spinner {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary-color, #5468ff);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation de pulsation */
+.pulse {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ========= TRANSITIONS POUR ACCESSIBILITÉ ========= */
+
+/* Classe pour réduire les animations (préférence de réduction de mouvement) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .page-transition-enter,
+  .page-transition-enter-active,
+  .page-transition-exit,
+  .page-transition-exit-active,
+  .route-fade-enter,
+  .route-fade-enter-active,
+  .route-fade-exit,
+  .route-fade-exit-active,
+  .slide-right-enter,
+  .slide-right-enter-active,
+  .slide-right-exit,
+  .slide-right-exit-active,
+  .slide-left-enter,
+  .slide-left-enter-active,
+  .slide-left-exit,
+  .slide-left-exit-active,
+  .zoom-page-enter,
+  .zoom-page-enter-active,
+  .zoom-page-exit,
+  .zoom-page-exit-active {
+    transition: none !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transform: none !important;
+  }
+
+  .fade-in,
+  .fade-out,
+  .slide-up,
+  .slide-down,
+  .slide-in-right,
+  .slide-in-left,
+  .zoom-in,
+  .zoom-out {
+    animation: none !important;
+  }
+
+  .loading-spinner {
+    animation: none !important;
+  }
+
+  .pulse {
+    animation: none !important;
+  }
+}
+
+/* ========= UTILITAIRES DE TRANSITION ========= */
+
+/* Délais de transition */
+.delay-100 {
+  transition-delay: 0.1s;
+}
+.delay-200 {
+  transition-delay: 0.2s;
+}
+.delay-300 {
+  transition-delay: 0.3s;
+}
+.delay-400 {
+  transition-delay: 0.4s;
+}
+.delay-500 {
+  transition-delay: 0.5s;
+}
+
+/* Durées de transition */
+.duration-100 {
+  transition-duration: 0.1s;
+}
+.duration-200 {
+  transition-duration: 0.2s;
+}
+.duration-300 {
+  transition-duration: 0.3s;
+}
+.duration-400 {
+  transition-duration: 0.4s;
+}
+.duration-500 {
+  transition-duration: 0.5s;
+}
+
+/* Animations diverses */
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Classes d'animation réutilisables */
+.slide-in {
+  animation: slideIn 0.5s ease forwards;
+}
+
+/* Pour les utilisateurs qui préfèrent réduire les animations */
+@media (prefers-reduced-motion) {
+  .page-transition-enter-active,
+  .page-transition-exit-active {
+    transition: opacity 150ms;
+    transform: none;
+  }
+
+  .page-transition-enter,
+  .page-transition-exit-active {
+    transform: none;
+  }
+
+  .fade-in,
+  .slide-in,
+  .pulse {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+body.reduced-motion * {
+  transition-duration: 0.1s !important;
+  animation-duration: 0.1s !important;
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--animation-distance));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(var(--animation-distance));
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Page Transitions */
+.page-transition-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+}
+
+.page-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Transition selector styling */
+.transition-selector {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.transition-selector select {
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  color: #333;
+}
+
+/* Dark mode adjustments */
+.theme-dark .transition-selector {
+  background: rgba(30, 30, 30, 0.8);
+}
+
+.theme-dark .transition-selector select {
+  color: #e0e0e0;
+}

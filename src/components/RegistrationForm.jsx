@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 import "./RegistrationForm.css";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { theme } = useTheme();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -153,8 +155,8 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="form-container">
-      <h2>Inscription au Catalogue de Fonctionnalités</h2>
+    <div className={`form-container ${theme === "dark" ? "dark-form" : ""}`}>
+      <h2>Créer un compte</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="firstName">Prénom*</label>
@@ -164,7 +166,9 @@ const RegistrationForm = () => {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            className={errors.firstName ? "error" : ""}
+            className={`${errors.firstName ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           />
           {errors.firstName && (
             <span className="error-message">{errors.firstName}</span>
@@ -179,7 +183,9 @@ const RegistrationForm = () => {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            className={errors.lastName ? "error" : ""}
+            className={`${errors.lastName ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           />
           {errors.lastName && (
             <span className="error-message">{errors.lastName}</span>
@@ -194,7 +200,9 @@ const RegistrationForm = () => {
             name="username"
             value={formData.username}
             onChange={handleChange}
-            className={errors.username ? "error" : ""}
+            className={`${errors.username ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           />
           {errors.username && (
             <span className="error-message">{errors.username}</span>
@@ -210,7 +218,9 @@ const RegistrationForm = () => {
             placeholder="https://github.com/username"
             value={formData.githubLink}
             onChange={handleChange}
-            className={errors.githubLink ? "error" : ""}
+            className={`${errors.githubLink ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           />
           {errors.githubLink && (
             <span className="error-message">{errors.githubLink}</span>
@@ -224,7 +234,9 @@ const RegistrationForm = () => {
             name="experienceLevel"
             value={formData.experienceLevel}
             onChange={handleChange}
-            className={errors.experienceLevel ? "error" : ""}
+            className={`${errors.experienceLevel ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           >
             <option value="">Sélectionnez votre niveau</option>
             {experienceLevels.map((level) => (
@@ -246,7 +258,9 @@ const RegistrationForm = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={errors.email ? "error" : ""}
+            className={`${errors.email ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           />
           {errors.email && (
             <span className="error-message">{errors.email}</span>
@@ -261,7 +275,9 @@ const RegistrationForm = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className={errors.password ? "error" : ""}
+            className={`${errors.password ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           />
           {errors.password && (
             <span className="error-message">{errors.password}</span>
@@ -276,7 +292,9 @@ const RegistrationForm = () => {
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
-            className={errors.confirmPassword ? "error" : ""}
+            className={`${errors.confirmPassword ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           />
           {errors.confirmPassword && (
             <span className="error-message">{errors.confirmPassword}</span>
@@ -289,7 +307,7 @@ const RegistrationForm = () => {
             <div
               className={`account-type-option ${
                 formData.accountType === "free" ? "selected" : ""
-              }`}
+              } ${theme === "dark" ? "dark-option" : ""}`}
             >
               <input
                 type="radio"
@@ -309,7 +327,7 @@ const RegistrationForm = () => {
             <div
               className={`account-type-option ${
                 formData.accountType === "premium" ? "selected" : ""
-              }`}
+              } ${theme === "dark" ? "dark-option" : ""}`}
             >
               <input
                 type="radio"
@@ -333,7 +351,7 @@ const RegistrationForm = () => {
           </div>
         </div>
 
-        <div className="form-group">
+        <div className="form-group terms-form-group">
           <div className="terms-container">
             <input
               type="checkbox"
@@ -356,7 +374,7 @@ const RegistrationForm = () => {
           S'inscrire
         </button>
 
-        <div className="login-link">
+        <div className={`login-link ${theme === "dark" ? "dark-link" : ""}`}>
           <p>
             Vous avez déjà un compte? <Link to="/login">Se connecter</Link>
           </p>

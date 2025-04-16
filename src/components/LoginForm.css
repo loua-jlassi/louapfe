@@ -7,11 +7,21 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Thème sombre pour le formulaire */
+.form-container.dark-form {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 .form-container h2 {
   text-align: center;
   color: #2c3e50;
   margin-bottom: 30px;
   font-size: 28px;
+}
+
+.dark-form h2 {
+  color: #e0e0e0;
 }
 
 .form-group {
@@ -23,6 +33,10 @@ label {
   margin-bottom: 8px;
   font-weight: 600;
   color: #2c3e50;
+}
+
+.dark-form label {
+  color: #e0e0e0;
 }
 
 .checkbox-label {
@@ -38,6 +52,16 @@ input[type="password"] {
   border-radius: 5px;
   font-size: 16px;
   transition: border-color 0.3s;
+  background-color: #fff;
+  color: #333;
+}
+
+.dark-input,
+.dark-form input[type="email"],
+.dark-form input[type="password"] {
+  background-color: #2d2d2d;
+  border-color: #444;
+  color: #e0e0e0;
 }
 
 input[type="email"]:focus,
@@ -45,6 +69,13 @@ input[type="password"]:focus {
   border-color: #3498db;
   outline: none;
   box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.dark-input:focus,
+.dark-form input[type="email"]:focus,
+.dark-form input[type="password"]:focus {
+  border-color: #7986cb;
+  box-shadow: 0 0 0 2px rgba(121, 134, 203, 0.2);
 }
 
 .remember-me-container {
@@ -63,6 +94,10 @@ input[type="password"]:focus {
   margin: 0;
   display: inline;
   font-weight: normal;
+}
+
+.dark-form .remember-me-container label {
+  color: #e0e0e0;
 }
 
 .error {
@@ -89,8 +124,16 @@ input[type="password"]:focus {
   transition: background-color 0.3s;
 }
 
+.dark-form .submit-button {
+  background-color: #7986cb;
+}
+
 .submit-button:hover {
   background-color: #2980b9;
+}
+
+.dark-form .submit-button:hover {
+  background-color: #5c6bc0;
 }
 
 .success-message {
@@ -103,9 +146,17 @@ input[type="password"]:focus {
   margin-bottom: 20px;
 }
 
+.dark-form .success-message h2 {
+  color: #66bb6a;
+}
+
 .success-message p {
   font-size: 18px;
   margin-bottom: 10px;
+}
+
+.dark-form .success-message p {
+  color: #e0e0e0;
 }
 
 .signup-link {
@@ -116,9 +167,19 @@ input[type="password"]:focus {
   border-radius: 5px;
 }
 
+.dark-signup,
+.dark-form .signup-link {
+  background-color: #2a2a2a;
+}
+
 .signup-link p {
   color: #34495e;
   font-size: 16px;
+}
+
+.dark-signup p,
+.dark-form .signup-link p {
+  color: #e0e0e0;
 }
 
 .signup-link a {
@@ -128,6 +189,80 @@ input[type="password"]:focus {
   margin-left: 5px;
 }
 
+.dark-signup a,
+.dark-form .signup-link a {
+  color: #7986cb;
+}
+
 .signup-link a:hover {
   text-decoration: underline;
+}
+
+/* Styles pour le lien "Mot de passe oublié" */
+.forgot-password {
+  text-align: right;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+.forgot-password a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* Styles pour le formulaire de réinitialisation de mot de passe */
+.info-message {
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-note {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  color: #3498db;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.text-button:hover {
+  color: #2980b9;
+}
+
+/* Adaptation pour le thème sombre */
+.dark-form .forgot-password a {
+  color: #5dade2;
+}
+
+.dark-form .forgot-password a:hover {
+  color: #7fb3d5;
+}
+
+.dark-form .info-message {
+  background-color: #2c3e50;
+  color: #bdc3c7;
+}
+
+.dark-form .text-button {
+  color: #5dade2;
+}
+
+.dark-form .text-button:hover {
+  color: #7fb3d5;
 }

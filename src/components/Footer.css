@@ -1,0 +1,57 @@
+.footer {
+  background-color: #f8f9fa;
+  padding: 1.5rem 0;
+  border-top: 1px solid #e9ecef;
+  text-align: center;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Solution pour fixer le footer tout en bas quand le contenu est court */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#root,
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex: 1;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.footer-dark {
+  background-color: #2a2e33;
+  border-top: 1px solid #40454e;
+  color: #e0e0e0;
+}
+
+.footer-bottom {
+  width: 100%;
+  font-size: 14px;
+  color: #777;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-dark .footer-bottom {
+  color: #aaa;
+}
+
+.copyright {
+  padding: 0 35px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1rem 0;
+  }
+}

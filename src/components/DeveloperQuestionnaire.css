@@ -1,0 +1,351 @@
+/* Styles pour le questionnaire développeur */
+.questionnaire-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 85vh;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.questionnaire-container.dark-mode {
+  background-color: #1a1d21;
+  color: #e0e0e0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Barre de progression */
+.questionnaire-progress {
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #f0f2f5;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.dark-mode .progress-bar {
+  background-color: #2c3038;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #5468ff, #4dabf7);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.step-indicator {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: right;
+}
+
+.dark-mode .step-indicator {
+  color: #a9b4c0;
+}
+
+/* Contenu du questionnaire */
+.questionnaire-content {
+  margin-bottom: 2rem;
+}
+
+.questionnaire-content h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #2d3748;
+}
+
+.dark-mode .questionnaire-content h1 {
+  color: #e2e8f0;
+}
+
+.step-description {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
+
+.dark-mode .step-description {
+  color: #a9b4c0;
+}
+
+/* Options de réponse */
+.options-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.option-card {
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.dark-mode .option-card {
+  background-color: #2c3038;
+  border-color: #454b54;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  border-color: #d1d9e6;
+}
+
+.dark-mode .option-card:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  border-color: #454b54;
+}
+
+.option-card.selected {
+  border-color: #5468ff;
+  background-color: #f3f4ff;
+}
+
+.dark-mode .option-card.selected {
+  border-color: #4dabf7;
+  background-color: #1e2936;
+}
+
+.option-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #5468ff;
+}
+
+.dark-mode .option-icon {
+  color: #4dabf7;
+}
+
+.option-label {
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.check-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #5468ff;
+  font-size: 1.2rem;
+}
+
+.dark-mode .check-icon {
+  color: #4dabf7;
+}
+
+/* Boutons d'action */
+.questionnaire-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-button {
+  background-color: #5468ff;
+  color: white;
+  border: none;
+}
+
+.primary-button:hover {
+  background-color: #4555d9;
+  transform: translateY(-2px);
+}
+
+.primary-button:disabled {
+  background-color: #b0b7e0;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: #5468ff;
+  border: 2px solid #5468ff;
+}
+
+.dark-mode .secondary-button {
+  color: #4dabf7;
+  border-color: #4dabf7;
+}
+
+.secondary-button:hover {
+  background-color: rgba(84, 104, 255, 0.1);
+}
+
+.dark-mode .secondary-button:hover {
+  background-color: rgba(77, 171, 247, 0.1);
+}
+
+.secondary-button:disabled {
+  color: #b0b7e0;
+  border-color: #b0b7e0;
+  cursor: not-allowed;
+}
+
+.dark-mode .secondary-button:disabled {
+  color: #6a92b4;
+  border-color: #6a92b4;
+}
+
+/* Résultats du questionnaire */
+.questionnaire-results {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.questionnaire-results h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.questionnaire-results p {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
+
+.dark-mode .questionnaire-results p {
+  color: #a9b4c0;
+}
+
+.recommendations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.recommendation-card {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.dark-mode .recommendation-card {
+  background-color: #2c3038;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.recommendation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .recommendation-card:hover {
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+}
+
+.recommendation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.recommendation-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #2d3748;
+}
+
+.dark-mode .recommendation-header h3 {
+  color: #e2e8f0;
+}
+
+.recommendation-type {
+  background-color: #e9ecef;
+  color: #5468ff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
+.dark-mode .recommendation-type {
+  background-color: #454b54;
+  color: #4dabf7;
+}
+
+.recommendation-card p {
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+.dark-mode .recommendation-card p {
+  color: #a9b4c0;
+}
+
+.results-actions {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .questionnaire-container {
+    padding: 1.5rem;
+  }
+
+  .questionnaire-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .options-container {
+    grid-template-columns: 1fr;
+  }
+
+  .questionnaire-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .recommendations-list {
+    grid-template-columns: 1fr;
+  }
+
+  .results-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

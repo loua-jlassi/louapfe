@@ -1,31 +1,82 @@
 /* Import de la police Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* Variables globales pour les thèmes */
 :root {
+  /* Light Theme */
+  --background-color: #f5f7fa;
+  --text-color: #333;
+  --text-secondary: #6c757d;
+  --primary-color: #5469d4;
+  --primary-color-light: #eaefff;
+  --primary-color-dark: #3f51b5;
+  --danger-color: #e53935;
+  --success-color: #43a047;
+  --border-color: #e0e0e0;
+  --card-background: #ffffff;
+  --hover-color: #f0f2f5;
+  --input-background: #ffffff;
+  --table-header-background: #f7f9fc;
+
+  /* Dark Theme Variables */
+  --dark-background: #121212;
+  --dark-text-color: #e0e0e0;
+  --dark-text-secondary: #a0a0a0;
+  --dark-card-background: #1e1e1e;
+  --dark-border-color: #333;
+  --dark-hover-color: #2c2c2c;
+  --dark-input-background: #2d2d2d;
+  --dark-table-header-background: #252525;
+
+  /* Transition */
+  --transition: all 0.3s ease;
+
+  /* Thème clair (par défaut) */
+  --bg-color: #f8f9fa;
   --primary-color: #6c5ce7;
   --secondary-color: #a55eea;
+  --card-bg: #ffffff;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --hover-bg: #f2f6fa;
+  --success-color: #27ae60;
+  --warning-color: #f39c12;
+  --error-color: #e74c3c;
+  --header-bg: linear-gradient(135deg, #6c5ce7, #a55eea);
   --accent-color: #fd79a8;
   --dark-color: #2d3436;
   --light-color: #f5f6fa;
-  --success-color: #00b894;
-  --warning-color: #fdcb6e;
-  --danger-color: #d63031;
   --border-radius: 12px;
   --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  margin: 0;
 }
 
 body {
   font-family: "Montserrat", sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.6;
-  color: var(--dark-color);
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
@@ -35,12 +86,22 @@ body {
   min-height: 100vh;
 }
 
+main {
+  flex: 1 0 auto;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Styles du thème sombre */
+body.theme-dark {
+  background-color: var(--dark-bg-color);
+  color: var(--dark-text-color);
+}
+
 .app-header {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--secondary-color)
-  );
+  background: var(--header-bg);
   color: white;
   padding: 2rem 0;
   text-align: center;
@@ -71,20 +132,12 @@ body {
   z-index: 1;
 }
 
-main {
-  flex: 1;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
 /* Styles des formulaires */
 form {
-  background: white;
+  background: var(--card-bg);
   padding: 2.5rem;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--card-shadow);
   margin-bottom: 2rem;
   position: relative;
   overflow: hidden;
@@ -111,12 +164,13 @@ textarea {
   width: 100%;
   padding: 1rem;
   margin-bottom: 1.5rem;
-  border: 2px solid #e1e1e1;
+  border: 2px solid var(--border-color);
   border-radius: var(--border-radius);
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   transition: var(--transition);
-  background-color: #f8f9fa;
+  background-color: var(--card-bg);
+  color: var(--text-color);
 }
 
 input:focus,
@@ -125,7 +179,6 @@ textarea:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
-  background-color: white;
 }
 
 button {
@@ -185,17 +238,17 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   margin: 1.5rem 0;
-  background: white;
+  background: var(--card-bg);
   border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--card-shadow);
 }
 
 th,
 td {
   padding: 1.2rem;
   text-align: left;
-  border-bottom: 1px solid #e1e1e1;
+  border-bottom: 1px solid var(--border-color);
 }
 
 th {
@@ -216,16 +269,16 @@ tr:last-child td {
 }
 
 tr:hover {
-  background-color: #f8f9fa;
+  background-color: var(--hover-bg);
 }
 
 /* Styles des cartes */
 .card {
-  background: white;
+  background: var(--card-bg);
   border-radius: var(--border-radius);
   padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--card-shadow);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -247,21 +300,18 @@ tr:hover {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .app-footer {
-  background: linear-gradient(
-    135deg,
-    var(--secondary-color),
-    var(--primary-color)
-  );
-  color: white;
+  background: var(--card-bg);
+  color: var(--text-color);
   text-align: center;
   padding: 2rem 0;
   margin-top: 2rem;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--border-color);
 }
 
 .app-footer::before {
@@ -346,4 +396,378 @@ input:focus::after,
 select:focus::after,
 textarea:focus::after {
   opacity: 1;
+}
+
+/* Styles pour les boutons */
+.primary-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.primary-button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.secondary-button:hover {
+  background-color: var(--hover-bg);
+  transform: translateY(-3px);
+}
+
+/* Animation de transition entre thèmes */
+.navbar,
+.card,
+button,
+input,
+textarea,
+select,
+.feature-card,
+.favorite-card {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Styles pour les transitions de page */
+.page-transition-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.page-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Loading screen styles */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  z-index: 9999;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark mode adjustments for loading screen */
+.dark .loading-screen {
+  background-color: var(--dark-background);
+}
+
+.dark .spinner {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-top-color: var(--primary-color);
+}
+
+/* Page container for transitions */
+.page-container {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+}
+
+/* Main content area */
+.main-content {
+  position: relative;
+  min-height: calc(100vh - 60px - 60px); /* Subtract header and footer height */
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 404 Page Not Found Styles */
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 70vh;
+  padding: 2rem;
+}
+
+.not-found-container h1 {
+  font-size: 8rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.not-found-container h2 {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+  color: var(--text-color);
+}
+
+.not-found-container p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+.back-home-button {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: var(--box-shadow);
+}
+
+.back-home-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(108, 92, 231, 0.2);
+}
+
+.not-found-container.dark h2 {
+  color: var(--dark-text-color);
+}
+
+.not-found-container.dark p {
+  color: var(--dark-text-secondary);
+}
+
+/* User Profile Styles */
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.profile-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: 2rem;
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-right: 1.5rem;
+}
+
+.profile-title h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.account-type {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.account-type.free {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+.account-type.premium {
+  background-color: #ffd700;
+  color: #333;
+}
+
+.profile-details {
+  margin-bottom: 2rem;
+}
+
+.detail-group {
+  margin-bottom: 1.5rem;
+}
+
+.detail-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.detail-group p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.profile-actions button {
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.edit-profile-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.upgrade-btn {
+  background-color: #ffd700;
+  color: #333;
+  border: none;
+}
+
+.logout-btn {
+  background-color: transparent;
+  color: var(--danger-color);
+  border: 1px solid var(--danger-color);
+}
+
+/* Dark theme adjustments for profile */
+.profile-container.dark .profile-card {
+  background-color: var(--dark-card-background);
+}
+
+.profile-container.dark .detail-group label {
+  color: var(--dark-text-secondary);
+}
+
+.profile-container.dark .logout-btn {
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+@media (max-width: 600px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-avatar {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .profile-actions button {
+    width: 100%;
+  }
+}
+
+/* Styles spécifiques au mode administrateur */
+.admin-mode {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.admin-main-content {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-mode .page-container {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Ajuster les transitions pour le mode admin */
+.admin-mode .page-transition-wrapper {
+  min-height: 100vh;
+}
+
+/* Masquer les éléments inutiles en mode admin */
+.admin-mode .footer,
+.admin-mode .accessibility-bar,
+.admin-mode .transition-selector {
+  display: none;
+}
+
+/* Style pour la navbar en mode admin */
+.admin-mode .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
 }

@@ -68,19 +68,48 @@ select:focus {
 .terms-container {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  justify-content: center;
+  margin-bottom: 5px;
 }
 
 .terms-container input[type="checkbox"] {
-  margin: 0;
-  width: auto;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .terms-container label {
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-color);
   margin: 0;
-  display: inline;
-  font-weight: normal;
+  text-align: right;
+}
+
+/* Adding specific styles to align and center the terms text with other elements */
+@media (min-width: 768px) {
+  .terms-container {
+    justify-content: center;
+    text-align: center;
+    padding: 0 10%;
+  }
+
+  .terms-container label {
+    text-align: left;
+    display: inline-block;
+  }
+}
+
+/* Custom styling for the terms form group */
+.terms-form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.terms-form-group .error-message {
+  text-align: center;
 }
 
 .error {
@@ -224,4 +253,90 @@ select:focus {
   .account-type-container {
     flex-direction: column;
   }
+}
+
+/* Styles pour le thème sombre */
+.dark-form {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-form h2 {
+  color: #e0e0e0;
+}
+
+.dark-form label {
+  color: #e0e0e0;
+}
+
+.dark-input,
+.dark-form input[type="text"],
+.dark-form input[type="email"],
+.dark-form input[type="password"],
+.dark-form input[type="url"],
+.dark-form select {
+  background-color: #2d2d2d;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+.dark-form input[type="text"]:focus,
+.dark-form input[type="email"]:focus,
+.dark-form input[type="password"]:focus,
+.dark-form input[type="url"]:focus,
+.dark-form select:focus {
+  border-color: #7986cb;
+  box-shadow: 0 0 0 2px rgba(121, 134, 203, 0.2);
+}
+
+.dark-option {
+  background-color: #2d2d2d;
+  border-color: #444;
+}
+
+.dark-option:hover {
+  background-color: #3d3d3d;
+  border-color: #555;
+}
+
+.dark-option.selected {
+  border-color: #7986cb;
+  background-color: rgba(121, 134, 203, 0.1);
+}
+
+.dark-form .account-type-title {
+  color: #e0e0e0;
+}
+
+.dark-form .account-type-description {
+  color: #b0b0b0;
+}
+
+.dark-form .account-type-price {
+  color: #7986cb;
+}
+
+.dark-form .terms-container label {
+  color: #e0e0e0;
+}
+
+.dark-form .submit-button {
+  background-color: #7986cb;
+}
+
+.dark-form .submit-button:hover {
+  background-color: #5c6bc0;
+}
+
+.dark-link,
+.dark-form .login-link {
+  background-color: #2a2a2a;
+}
+
+.dark-form .login-link p {
+  color: #e0e0e0;
+}
+
+.dark-form .login-link a {
+  color: #7986cb;
 }

@@ -1,7 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./FeaturesPage.css";
+import { useTheme } from "../context/ThemeContext";
+import {
+  FaLock,
+  FaStar,
+  FaCheck,
+  FaClipboardCheck,
+  FaSearch,
+  FaFilter,
+  FaChevronDown,
+  FaChevronUp,
+  FaHeart,
+  FaRegHeart,
+} from "react-icons/fa";
+import Footer from "./Footer";
 
 const FeaturesPage = () => {
   const { user } = useAuth();
@@ -10,6 +24,10 @@ const FeaturesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [userAccountType, setUserAccountType] = useState("free");
   const [favoriteFeatures, setFavoriteFeatures] = useState([]);
+  const { isLoggedIn, updateUserAccountType } = useAuth();
+  const { theme, isDarkMode } = useTheme();
+  const [recommendations, setRecommendations] = useState([]);
+  const [showRecommendations, setShowRecommendations] = useState(false);
 
   useEffect(() => {
     // Récupérer le type de compte de l'utilisateur connecté
@@ -22,7 +40,38 @@ const FeaturesPage = () => {
         setFavoriteFeatures(JSON.parse(storedFavorites));
       }
     }
+
+    // Charger les recommandations si disponibles
+    const storedRecommendations = localStorage.getItem("recommendations");
+    if (storedRecommendations) {
+      setRecommendations(JSON.parse(storedRecommendations));
+      setShowRecommendations(true);
+    }
   }, [user]);
+
+  const handleUpgrade = () => {
+    if (!user) {
+      alert("Veuillez vous connecter pour passer à la version premium");
+      navigate("/login");
+      return;
+    }
+
+    // Mise à jour du type de compte de l'utilisateur
+    const updatedUser = { ...user, accountType: "premium" };
+
+    // Mettre à jour le stockage local
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const updatedUsers = users.map((u) =>
+      u.email === user.email ? { ...u, accountType: "premium" } : u
+    );
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+    // Mettre à jour l'état de l'application
+    updateUserAccountType("premium");
+    setUserAccountType("premium");
+
+    alert("Félicitations ! Vous êtes maintenant un utilisateur premium.");
+  };
 
   const features = [
     {
@@ -113,13 +162,14 @@ const FeaturesPage = () => {
   ];
 
   // Filtrer les fonctionnalités en fonction de la recherche et de la catégorie
-  // Ne plus filtrer par type de compte pour afficher toutes les fonctionnalités
   const filteredFeatures = features.filter((feature) => {
     const matchesSearch = feature.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     const matchesCategory =
       selectedCategory === "all" || feature.category === selectedCategory;
+
+    // Ne pas filtrer par type de compte - afficher toutes les fonctionnalités
     return matchesSearch && matchesCategory;
   });
 
@@ -128,6 +178,9 @@ const FeaturesPage = () => {
       alert(
         "Cette fonctionnalité est disponible uniquement pour les utilisateurs premium. Passez à un compte premium pour y accéder."
       );
+    } else {
+      // Rediriger vers la page de documentation de la fonctionnalité
+      navigate(`/features/documentation/${feature.id}`);
     }
   };
 
@@ -174,85 +227,290 @@ const FeaturesPage = () => {
     navigate("/dashboard");
   };
 
+  const handleStartQuestionnaire = () => {
+    navigate("/dev-questionnaire");
+  };
+
+  const clearRecommendations = () => {
+    localStorage.removeItem("recommendations");
+    setRecommendations([]);
+    setShowRecommendations(false);
+  };
+
+  // Identifier les fonctionnalités recommandées
+  const isRecommended = (feature) => {
+    if (!recommendations.length) return false;
+    return recommendations.some((rec) => rec.title === feature.title);
+  };
+
   const categories = ["all", ...new Set(features.map((f) => f.category))];
 
-  return (
-    <div className="features-page">
-      <h1>Catalogue de Fonctionnalités</h1>
+  const FeatureCard = ({ feature, isAuthenticated, isPremium }) => {
+    const userAccount = isAuthenticated ? userAccountType : "free";
+    const canAccess = !feature.isPremium || userAccount === "premium";
 
-      {/* Bannière de type de compte - uniquement pour les utilisateurs connectés avec un compte gratuit */}
-      {user && user.accountType === "free" && (
-        <div className="account-type-banner">
-          <p>Vous utilisez actuellement un compte gratuit</p>
-          <button className="upgrade-button">Passer à Premium</button>
+    const handleAddToFavorites = () => {
+      if (!isAuthenticated) {
+        alert("Veuillez vous connecter pour ajouter aux favoris.");
+        navigate("/login");
+        return;
+      }
+
+      // Ajouter aux favoris
+      if (!isFeatureInFavorites(feature.id)) {
+        const updatedFavorites = [...favoriteFeatures, feature];
+        setFavoriteFeatures(updatedFavorites);
+
+        // Stocker dans localStorage
+        localStorage.setItem(
+          `favorites_${user.email}`,
+          JSON.stringify(updatedFavorites)
+        );
+      }
+    };
+
+    return (
+      <div
+        className={`feature-card ${
+          recommendations.includes(feature.id) ? "recommended" : ""
+        } ${isDarkMode ? "dark-mode" : ""}`}
+      >
+        {/* Badge premium si applicable */}
+        {feature.isPremium && (
+          <div className="premium-tag">
+            <FaLock /> Premium
+          </div>
+        )}
+
+        {/* En-tête de la carte */}
+        <div className="feature-header">
+          <div className="feature-icon">{renderIcon(feature.icon)}</div>
+          <div className="feature-actions">
+            <button
+              className="favorite-button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleAddToFavorites();
+              }}
+              aria-label="Ajouter aux favoris"
+              title="Ajouter aux favoris"
+            >
+              <FaStar
+                className={`star-icon ${
+                  isFeatureInFavorites(feature.id) ? "favorited" : ""
+                }`}
+              />
+            </button>
+          </div>
         </div>
-      )}
 
-      {user && (
-        <div className="dashboard-link">
-          <button className="dashboard-button" onClick={handleViewDashboard}>
-            Voir mon tableau de bord
-          </button>
+        {/* Contenu de la carte */}
+        <div className="feature-content">
+          <h3 className="feature-title">{feature.title}</h3>
+          <p className="feature-description">{feature.description}</p>
+          <div className="feature-category">{feature.category}</div>
         </div>
-      )}
 
-      <div className="features-controls">
-        <input
-          type="text"
-          placeholder="Rechercher une fonctionnalité..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="category-select"
-        >
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category === "all" ? "Toutes les catégories" : category}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="features-grid">
-        {filteredFeatures.map((feature) => (
-          <div
-            key={feature.id}
-            className={`feature-card ${
-              feature.isPremium ? "premium-feature" : ""
-            } ${
-              feature.isPremium && userAccountType === "free" ? "locked" : ""
-            }`}
-            onClick={() => handleFeatureClick(feature)}
+        {/* Pied de la carte avec bouton d'action */}
+        <div className="feature-card-footer">
+          <Link
+            to={`/features/documentation/${feature.id}`}
+            className="view-details-button"
+            onClick={(e) => {
+              if (!canAccess) {
+                e.preventDefault();
+                alert(
+                  "Cette fonctionnalité est disponible uniquement pour les utilisateurs premium. Passez à un compte premium pour y accéder."
+                );
+              }
+            }}
           >
-            <div className="feature-icon">{feature.icon}</div>
-            <h3>{feature.title}</h3>
-            <p>{feature.description}</p>
-            <div className="feature-footer">
-              <span className="feature-category">{feature.category}</span>
-              {user && (
-                <button
-                  className={`favorite-button ${
-                    isFeatureInFavorites(feature.id) ? "favorited" : ""
-                  }`}
-                  onClick={(e) => handleAddToFavorites(feature, e)}
-                  disabled={isFeatureInFavorites(feature.id)}
-                >
-                  {isFeatureInFavorites(feature.id) ? "✓ Ajouté" : "Ajouter"}
-                </button>
-              )}
+            Voir les détails
+          </Link>
+        </div>
+      </div>
+    );
+  };
+
+  // Add renderIcon function
+  const renderIcon = (icon) => {
+    // If icon is an emoji or text, return it directly
+    if (typeof icon === "string") {
+      return icon;
+    }
+    // If no icon is provided, return a default
+    return "📦";
+  };
+
+  return (
+    <div className={`features-page ${theme === "dark" ? "theme-dark" : ""}`}>
+      <div className="features-container">
+        <div className="features-header">
+          <h1>Découvrez Nos Fonctionnalités</h1>
+          <p>
+            Explorer toutes les fonctionnalités disponibles pour améliorer votre
+            expérience. Nous proposons des outils puissants pour vous aider dans
+            tous vos projets.
+          </p>
+        </div>
+
+        {userAccountType === "free" && (
+          <div className="account-type-banner">
+            <p>
+              Vous utilisez actuellement un compte{" "}
+              <span className="free-account">Gratuit</span>. Certaines
+              fonctionnalités sont réservées aux utilisateurs premium.
+            </p>
+            <div className="upgrade-text">
+              Passez à Premium pour accéder à toutes les fonctionnalités !
             </div>
-            {feature.isPremium && userAccountType === "free" && (
-              <div className="premium-lock">
-                <span className="lock-icon">🔒</span>
-                <span>Fonctionnalité Premium</span>
-              </div>
+            <button className="upgrade-button" onClick={handleUpgrade}>
+              Passer à Premium
+            </button>
+          </div>
+        )}
+
+        {userAccountType === "premium" && (
+          <div className="premium-user-banner">
+            <div className="premium-user-text">Compte Premium</div>
+            <p>Vous avez accès à toutes les fonctionnalités premium !</p>
+          </div>
+        )}
+
+        {/* Section questionnaire développeur */}
+        <div className="developer-tools-banner">
+          <div className="developer-tools-content">
+            <h2>Vous êtes développeur ?</h2>
+            <p>
+              Nous pouvons vous proposer des fonctionnalités adaptées à vos
+              besoins spécifiques. Complétez notre questionnaire rapide pour
+              obtenir des recommandations personnalisées.
+            </p>
+            <button
+              className="questionnaire-button"
+              onClick={handleStartQuestionnaire}
+            >
+              Commencer le questionnaire
+            </button>
+          </div>
+        </div>
+
+        {/* Afficher les recommandations si disponibles */}
+        {showRecommendations && recommendations.length > 0 && (
+          <div className="recommendations-section">
+            <div className="recommendations-header">
+              <h2>Recommandations personnalisées</h2>
+              <button
+                className="clear-recommendations"
+                onClick={clearRecommendations}
+              >
+                Effacer les recommandations
+              </button>
+            </div>
+            <div className="recommendations-description">
+              <p>
+                Basé sur votre profil de développeur, nous vous recommandons les
+                fonctionnalités suivantes :
+              </p>
+            </div>
+            <div className="recommendations-list">
+              {recommendations.map((recommendation, index) => (
+                <div key={index} className="recommendation-tag">
+                  <FaClipboardCheck className="recommendation-icon" />
+                  {recommendation.title}
+                  <span className="recommendation-type">
+                    {recommendation.type}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="features-filters">
+          <div className="search-container">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Rechercher une fonctionnalité..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+
+          <div className="category-filters">
+            <button
+              className={`category-button ${
+                selectedCategory === "all" ? "active" : ""
+              }`}
+              onClick={() => setSelectedCategory("all")}
+            >
+              Toutes
+            </button>
+            {Array.from(
+              new Set(features.map((feature) => feature.category))
+            ).map((category) => (
+              <button
+                key={category}
+                className={`category-button ${
+                  selectedCategory === category ? "active" : ""
+                }`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {user && user.role === "admin" && (
+          <div className="dashboard-link">
+            <button className="dashboard-button" onClick={handleViewDashboard}>
+              Accéder au tableau de bord administrateur
+            </button>
+          </div>
+        )}
+
+        <div className="features-grid">
+          {filteredFeatures.map((feature) => (
+            <FeatureCard
+              key={feature.id}
+              feature={feature}
+              isAuthenticated={user}
+              isPremium={userAccountType === "premium"}
+            />
+          ))}
+        </div>
+
+        {/* Section "Prêt à commencer" */}
+        <section className="features-cta-section">
+          <h2>Prêt à commencer?</h2>
+          <p>
+            Explorez notre catalogue complet de fonctionnalités et intégrez-les
+            à vos projets dès maintenant
+          </p>
+          <div className="cta-buttons">
+            {!user ? (
+              <>
+                <Link to="/register" className="cta-button primary">
+                  S'inscrire
+                </Link>
+                <Link to="/login" className="cta-button secondary">
+                  Se connecter
+                </Link>
+              </>
+            ) : userAccountType === "free" ? (
+              <button className="cta-button primary" onClick={handleUpgrade}>
+                Passer à Premium
+              </button>
+            ) : (
+              <Link to="/dashboard" className="cta-button primary">
+                Accéder à mon tableau de bord
+              </Link>
             )}
           </div>
-        ))}
+        </section>
       </div>
     </div>
   );

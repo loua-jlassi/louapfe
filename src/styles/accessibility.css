@@ -1,0 +1,350 @@
+/* 
+ * Styles d'Accessibilité
+ * Ce fichier contient toutes les règles pour améliorer l'accessibilité de l'application
+ */
+
+/* ========= UTILITAIRES D'ACCESSIBILITÉ ========= */
+
+/* Masquer visuellement le contenu tout en le gardant disponible pour les lecteurs d'écran */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Mise au point visible pour la navigation au clavier */
+:focus {
+  outline: 3px solid #4e73df !important;
+  outline-offset: 2px !important;
+}
+
+/* Style de focus spécial pour les éléments de type bouton */
+button:focus,
+[role="button"]:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid #4e73df !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.3) !important;
+}
+
+/* Style pour cacher le plan de focus lorsque l'utilisateur utilise la souris */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Utilitaire pour ignorer les animations en cas de préférence utilisateur */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========= CONTRASTES ET LISIBILITÉ ========= */
+
+/* Classes pour améliorer le contraste */
+.high-contrast-text {
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
+.dark-mode .high-contrast-text {
+  color: #fff !important;
+  background-color: #000 !important;
+}
+
+/* Texte avec un rapport de contraste élevé */
+.contrast-text {
+  font-weight: 600 !important;
+  color: #000 !important;
+}
+
+.dark-mode .contrast-text {
+  color: #fff !important;
+}
+
+/* Ajuste la taille du texte pour une meilleure lisibilité */
+.readable-text {
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* ========= NAVIGATION ET STRUCTURE ========= */
+
+/* Permet une navigation au clavier plus simple */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #4e73df;
+  color: white;
+  padding: 10px;
+  z-index: 1001;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Navigation au clavier améliorée */
+[tabindex]:not([tabindex="-1"]):focus {
+  outline: 3px solid #4e73df !important;
+  outline-offset: 2px !important;
+}
+
+/* Pour les liens sans texte (icônes) - ajoute un texte pour les lecteurs d'écran */
+.icon-only {
+  position: relative;
+}
+
+.icon-only::after {
+  content: attr(aria-label);
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+/* Améliorations pour les formulaires */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Associe visuellement les champs requis */
+.required::after {
+  content: " *";
+  color: #e74a3b;
+}
+
+/* Message d'erreur de validation accessibles */
+.error-message {
+  color: #e74a3b;
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+}
+
+/* Feedback des états des contrôles de formulaire */
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border-color: #e74a3b !important;
+}
+
+/* Connexion visuelle entre les étiquettes et les champs de formulaire */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group:focus-within label {
+  color: #4e73df;
+}
+
+/* ========= RÔLES ET ARIA ========= */
+
+/* Styles pour les éléments basés sur les rôles ARIA */
+[role="alert"] {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+[role="status"] {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+[role="dialog"],
+[role="alertdialog"] {
+  outline: none;
+  border-radius: 0.375rem;
+  box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.5);
+}
+
+/* ========= TAILLE DE TEXTE ADAPTIVE ========= */
+
+/* Permet de redimensionner le texte sans casser la mise en page */
+html {
+  font-size: 100%; /* Base 16px dans la plupart des navigateurs */
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Classes utilitaires pour le zoom de texte */
+.text-zoom-reset {
+  font-size: 1rem !important;
+}
+
+.text-zoom-large {
+  font-size: 1.25rem !important;
+}
+
+.text-zoom-larger {
+  font-size: 1.5rem !important;
+}
+
+/* ========= MODES CONTRASTE ÉLEVÉ ========= */
+
+/* Support du mode contraste élevé de Windows */
+@media screen and (-ms-high-contrast: active) {
+  /* Garantit la visibilité dans les modes à contraste élevé de Windows */
+  * {
+    -ms-high-contrast-adjust: none;
+  }
+
+  /* S'assure que les boutons sont toujours visibles */
+  button,
+  [role="button"] {
+    border: 1px solid currentColor;
+  }
+
+  /* S'assure que les images importantes restent visibles */
+  img {
+    -ms-high-contrast-adjust: none;
+  }
+}
+
+/* Classes à ajouter manuellement pour un meilleur contraste */
+.high-contrast-mode {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+  outline: 1px solid #fff !important;
+}
+
+.high-contrast-mode.invert {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #000 !important;
+  outline: 1px solid #000 !important;
+}
+
+/* ========= OUTILS D'AIDE À L'ACCESSIBILITÉ ========= */
+
+/* Barre d'accessibilité pour le paramétrage */
+.accessibility-bar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.accessibility-button {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.accessibility-button:hover {
+  background-color: #e9ecef;
+}
+
+.accessibility-button.active {
+  background-color: #4e73df;
+  color: white;
+  border-color: #4e73df;
+}
+
+/* ========= AMÉLIORATION POUR LES LECTEURS D'ÉCRAN ========= */
+
+/* Pour le contenu destiné uniquement aux lecteurs d'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Pour le contenu qui ne doit pas être lu par les lecteurs d'écran */
+.aria-hidden {
+  display: none;
+}
+
+[aria-hidden="true"] {
+  display: none;
+}
+
+/* Améliorations pour les tableaux et les données tabulaires */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.5rem 0;
+}
+
+th {
+  text-align: left;
+}
+
+tr:focus-within,
+td:focus-within,
+th:focus-within {
+  outline: 2px solid #4e73df;
+}
+
+/* ========= AIDE À LA LECTURE ========= */
+
+/* Améliorations pour la dyslexie */
+.dyslexia-friendly {
+  font-family: "OpenDyslexic", "Comic Sans MS", sans-serif !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+
+/* Texte plus lisible pour les personnes malvoyantes */
+.easy-reading {
+  font-size: 1.2rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+  max-width: 70ch !important; /* Longueur de ligne optimale pour la lecture */
+}

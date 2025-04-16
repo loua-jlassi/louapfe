@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 import "./LoginForm.css";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { theme } = useTheme();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -48,8 +50,61 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (validate()) {
-      // Simuler une vérification des identifiants
-      // Dans une vraie application, vous feriez un appel API ici
+      // Ajout d'une connexion administrateur rapide
+      if (
+        formData.email === "admin@example.com" &&
+        formData.password === "admin123"
+      ) {
+        // Assurez-vous que le rôle est bien défini
+        const adminUser = {
+          id: "admin1",
+          name: "Admin",
+          email: "admin@example.com",
+          role: "admin",
+          accountType: "premium",
+        };
+
+        console.log("Connexion admin réussie:", adminUser);
+        login(adminUser);
+
+        // Sauvegarde dans localStorage pour debug
+        localStorage.setItem("currentUser", JSON.stringify(adminUser));
+
+        setIsSubmitted(true);
+        setTimeout(() => {
+          navigate("/admin");
+        }, 1500);
+        return;
+      }
+
+      // Ajout d'un deuxième compte administrateur
+      if (
+        formData.email === "super@admin.com" &&
+        formData.password === "super2024"
+      ) {
+        // Assurez-vous que le rôle est bien défini
+        const superAdmin = {
+          id: "admin2",
+          name: "Super Admin",
+          email: "super@admin.com",
+          role: "admin",
+          accountType: "premium",
+        };
+
+        console.log("Connexion super admin réussie:", superAdmin);
+        login(superAdmin);
+
+        // Sauvegarde dans localStorage pour debug
+        localStorage.setItem("currentUser", JSON.stringify(superAdmin));
+
+        setIsSubmitted(true);
+        setTimeout(() => {
+          navigate("/admin");
+        }, 1500);
+        return;
+      }
+
+      // Connexion utilisateur normale
       const mockUsers = JSON.parse(localStorage.getItem("users") || "[]");
       const user = mockUsers.find(
         (u) => u.email === formData.email && u.password === formData.password
@@ -72,7 +127,11 @@ const LoginForm = () => {
 
   if (isSubmitted) {
     return (
-      <div className="form-container success-message">
+      <div
+        className={`form-container success-message ${
+          theme === "dark" ? "dark-form" : ""
+        }`}
+      >
         <h2>Connexion réussie!</h2>
         <p>Redirection vers la page des fonctionnalités...</p>
       </div>
@@ -80,7 +139,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="form-container">
+    <div className={`form-container ${theme === "dark" ? "dark-form" : ""}`}>
       <h2>Connexion</h2>
       <form onSubmit={handleSubmit}>
         {errors.auth && (
@@ -94,7 +153,9 @@ const LoginForm = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={errors.email ? "error" : ""}
+            className={`${errors.email ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           />
           {errors.email && (
             <span className="error-message">{errors.email}</span>
@@ -109,11 +170,16 @@ const LoginForm = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className={errors.password ? "error" : ""}
+            className={`${errors.password ? "error" : ""} ${
+              theme === "dark" ? "dark-input" : ""
+            }`}
           />
           {errors.password && (
             <span className="error-message">{errors.password}</span>
           )}
+          <div className="forgot-password">
+            <Link to="/reset-password">Mot de passe oublié?</Link>
+          </div>
         </div>
 
         <div className="form-group">
@@ -135,7 +201,7 @@ const LoginForm = () => {
           Se connecter
         </button>
 
-        <div className="signup-link">
+        <div className={`signup-link ${theme === "dark" ? "dark-signup" : ""}`}>
           <p>
             Vous n'avez pas de compte? <Link to="/register">S'inscrire</Link>
           </p>

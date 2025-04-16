@@ -1,0 +1,425 @@
+.documentation-preview {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.documentation-preview.dark-mode {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+.doc-preview-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.doc-preview-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: #4a6cf7;
+}
+
+.dark-mode .doc-preview-header h1 {
+  color: #5d7bf9;
+}
+
+.doc-preview-header p {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
+.dark-mode .doc-preview-header p {
+  color: #adb5bd;
+}
+
+.doc-preview-content {
+  display: flex;
+  gap: 30px;
+}
+
+/* Sidebar styles */
+.doc-sidebar {
+  flex: 0 0 300px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .doc-sidebar {
+  background-color: #242424;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.doc-sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #343a40;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.dark-mode .doc-sidebar h2 {
+  color: #e9ecef;
+  border-bottom-color: #333;
+}
+
+.doc-sidebar h3 {
+  font-size: 1.2rem;
+  margin: 20px 0 15px;
+  color: #343a40;
+}
+
+.dark-mode .doc-sidebar h3 {
+  color: #e9ecef;
+}
+
+.doc-form-group {
+  margin-bottom: 15px;
+}
+
+.doc-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.dark-mode .doc-form-group label {
+  color: #adb5bd;
+}
+
+.doc-form-group input,
+.doc-form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.dark-mode .doc-form-group input,
+.dark-mode .doc-form-group textarea {
+  background-color: #333;
+  border-color: #495057;
+  color: #e9ecef;
+}
+
+/* Preview panel styles */
+.doc-preview-panel {
+  flex: 1;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.dark-mode .doc-preview-panel {
+  background-color: #242424;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.doc-tabs {
+  display: flex;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.dark-mode .doc-tabs {
+  background-color: #333;
+  border-bottom-color: #444;
+}
+
+.doc-tab {
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dark-mode .doc-tab {
+  color: #adb5bd;
+}
+
+.doc-tab:hover {
+  background-color: #eef1ff;
+  color: #4a6cf7;
+}
+
+.dark-mode .doc-tab:hover {
+  background-color: #2a2a3d;
+  color: #5d7bf9;
+}
+
+.doc-tab.active {
+  border-bottom: 2px solid #4a6cf7;
+  color: #4a6cf7;
+}
+
+.dark-mode .doc-tab.active {
+  border-bottom-color: #5d7bf9;
+  color: #5d7bf9;
+}
+
+.doc-preview-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-preview-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.dark-mode .doc-preview-actions {
+  background-color: #333;
+  border-bottom-color: #444;
+}
+
+.doc-action-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #e6f2ff;
+  color: #0066cc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.dark-mode .doc-action-button {
+  background-color: #1a3a5a;
+  color: #66b3ff;
+}
+
+.doc-action-button:hover {
+  background-color: #cce5ff;
+}
+
+.dark-mode .doc-action-button:hover {
+  background-color: #234a73;
+}
+
+.doc-view-tabs {
+  display: flex;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.dark-mode .doc-view-tabs {
+  background-color: #333;
+  border-bottom-color: #444;
+}
+
+.doc-view-tab {
+  padding: 8px 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dark-mode .doc-view-tab {
+  color: #adb5bd;
+}
+
+.doc-view-tab:hover {
+  background-color: #eef1ff;
+  color: #4a6cf7;
+}
+
+.dark-mode .doc-view-tab:hover {
+  background-color: #2a2a3d;
+  color: #5d7bf9;
+}
+
+.doc-view-tab.active {
+  border-bottom: 2px solid #4a6cf7;
+  color: #4a6cf7;
+}
+
+.dark-mode .doc-view-tab.active {
+  border-bottom-color: #5d7bf9;
+  color: #5d7bf9;
+}
+
+.doc-preview-content-view {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+}
+
+/* Markdown preview styles */
+.markdown-wrapper {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+.dark-mode .markdown-wrapper {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border-color: #444;
+}
+
+.markdown-preview-p {
+  margin-bottom: 1em;
+}
+
+.markdown-preview-h1 {
+  font-size: 2rem;
+  margin: 0.5em 0 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eaecef;
+  color: #333;
+}
+
+.dark-mode .markdown-preview-h1 {
+  border-bottom-color: #444;
+  color: #f0f0f0;
+}
+
+.markdown-preview-h2 {
+  font-size: 1.5rem;
+  margin: 1.5em 0 0.8em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eaecef;
+  color: #333;
+}
+
+.dark-mode .markdown-preview-h2 {
+  border-bottom-color: #444;
+  color: #f0f0f0;
+}
+
+.markdown-preview-h3 {
+  font-size: 1.25rem;
+  margin: 1.5em 0 0.8em;
+  color: #333;
+}
+
+.dark-mode .markdown-preview-h3 {
+  color: #f0f0f0;
+}
+
+.markdown-preview-ul {
+  margin: 1em 0;
+  padding-left: 2em;
+  color: #333;
+}
+
+.dark-mode .markdown-preview-ul {
+  color: #f0f0f0;
+}
+
+.markdown-preview-li {
+  margin-bottom: 0.5em;
+}
+
+.markdown-preview-a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.dark-mode .markdown-preview-a {
+  color: #58a6ff;
+}
+
+.markdown-preview-a:hover {
+  text-decoration: underline;
+}
+
+.markdown-preview-code {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #f6f8fa;
+  color: #333;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.dark-mode .markdown-preview-code {
+  background-color: #2a2a2a;
+  color: #e6e6e6;
+}
+
+/* Remove old markdown classes */
+.markdown-preview {
+  display: none;
+}
+
+/* Code preview styles */
+.code-preview {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #f6f8fa;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: auto;
+  line-height: 1.45;
+  font-size: 0.9rem;
+  tab-size: 2;
+}
+
+.dark-mode .code-preview {
+  background-color: #2a2a2a;
+  color: #e6e6e6;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .doc-preview-content {
+    flex-direction: column;
+  }
+
+  .doc-sidebar {
+    flex: auto;
+    margin-bottom: 20px;
+  }
+
+  .doc-preview-panel {
+    max-height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .doc-preview-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .doc-tabs {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 576px) {
+  .documentation-preview {
+    padding: 10px;
+  }
+}

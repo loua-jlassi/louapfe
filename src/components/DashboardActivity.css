@@ -1,0 +1,507 @@
+/* Variables CSS */
+:root {
+  --primary-color: #89cff0; /* Bleu ciel */
+  --primary-light: #d6eeff;
+  --secondary-color: #ffc0cb; /* Rose bébé */
+  --secondary-light: #ffe6ea;
+  --success-color: #a7e9af;
+  --warning-color: #ffd166;
+  --danger-color: #ff8c94;
+  --dark-color: #4a5568;
+  --light-color: #f6f9fc;
+  --text-color: #4b4b4b;
+  --text-color-light: #7e8299;
+  --border-color: #eaeaea;
+  --border-radius: 12px;
+  --shadow-sm: 0 2px 8px rgba(137, 207, 240, 0.1);
+  --shadow-md: 0 4px 12px rgba(137, 207, 240, 0.15);
+  --shadow-lg: 0 8px 24px rgba(137, 207, 240, 0.2);
+  --transition: all 0.3s ease;
+}
+
+/* Dashboard Activity Container */
+.dashboard-activity {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  width: 100%;
+}
+
+/* Activity Section */
+.activity-section {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.activity-section:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Activity Header */
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(
+    to right,
+    var(--primary-light),
+    var(--secondary-light)
+  );
+}
+
+.activity-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin: 0;
+}
+
+.activity-title svg {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+/* Activity Filter */
+.activity-filter {
+  display: flex;
+  gap: 8px;
+}
+
+.activity-filter button {
+  padding: 6px 14px;
+  background: var(--light-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.activity-filter button:hover {
+  background: var(--secondary-light);
+  color: var(--dark-color);
+  border-color: var(--secondary-color);
+}
+
+.activity-filter button.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Activity List */
+.activity-list {
+  padding: 0;
+}
+
+/* Activity Item */
+.activity-item {
+  display: flex;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+  position: relative;
+  background: linear-gradient(to right, white, #f0f8ff);
+  border-left: 4px solid var(--primary-color);
+}
+
+.activity-item:hover {
+  background-color: var(--primary-light);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  margin-right: 16px;
+  color: var(--primary-color);
+}
+
+.activity-icon svg {
+  font-size: 1rem;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-message {
+  font-weight: 500;
+  color: var(--dark-color);
+  margin-bottom: 6px;
+}
+
+.activity-meta {
+  display: flex;
+  gap: 15px;
+  color: var(--text-color-light);
+  font-size: 0.813rem;
+}
+
+.activity-time,
+.activity-user {
+  display: flex;
+  align-items: center;
+}
+
+.activity-time svg,
+.activity-user svg {
+  margin-right: 4px;
+  font-size: 0.75rem;
+}
+
+/* Today's Actions */
+.todays-actions {
+  background: linear-gradient(to bottom right, #fff, var(--secondary-light));
+}
+
+.actions-list {
+  padding: 10px 0;
+}
+
+.action-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.action-item:hover {
+  background-color: rgba(255, 192, 203, 0.1);
+}
+
+.action-item:last-child {
+  border-bottom: none;
+}
+
+.action-left {
+  display: flex;
+  align-items: center;
+}
+
+.action-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: var(--transition);
+}
+
+.action-checkbox.completed {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.action-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-title {
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
+.action-desc {
+  font-size: 0.875rem;
+  color: var(--text-color-light);
+  margin-top: 3px;
+}
+
+.action-status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.action-status.completed {
+  background-color: rgba(167, 233, 175, 0.2);
+  color: var(--success-color);
+}
+
+.action-status.pending {
+  background-color: rgba(255, 209, 102, 0.2);
+  color: var(--warning-color);
+}
+
+.action-status.in-progress {
+  background-color: rgba(137, 207, 240, 0.2);
+  color: var(--primary-color);
+}
+
+/* System Status */
+.system-status {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.status-card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.status-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(to right, var(--primary-light), white);
+}
+
+.status-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.status-icon.api {
+  background-color: rgba(137, 207, 240, 0.2);
+  color: var(--primary-color);
+}
+
+.status-icon.database {
+  background-color: rgba(255, 192, 203, 0.2);
+  color: var(--secondary-color);
+}
+
+.status-icon.payment {
+  background-color: rgba(167, 233, 175, 0.2);
+  color: var(--success-color);
+}
+
+.status-info {
+  flex: 1;
+}
+
+.status-name {
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 5px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-dot.operational {
+  background-color: var(--success-color);
+}
+
+.status-dot.issues {
+  background-color: var(--warning-color);
+}
+
+.status-text {
+  color: var(--text-color-light);
+}
+
+.status-metrics {
+  padding: 15px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 15px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-name {
+  font-size: 0.813rem;
+  color: var(--text-color-light);
+}
+
+.metric-value {
+  font-weight: 600;
+  color: var(--dark-color);
+}
+
+.metric-value.good {
+  color: var(--success-color);
+}
+
+.metric-value.warning {
+  color: var(--warning-color);
+}
+
+.metric-value.critical {
+  color: var(--danger-color);
+}
+
+/* Dark Mode */
+.dark-mode .activity-section {
+  background-color: var(--dark-color);
+  border-color: #2d3748;
+}
+
+.dark-mode .activity-header {
+  border-color: #2d3748;
+  background: linear-gradient(
+    to right,
+    rgba(137, 207, 240, 0.2),
+    rgba(255, 192, 203, 0.2)
+  );
+}
+
+.dark-mode .activity-title {
+  color: white;
+}
+
+.dark-mode .activity-filter button {
+  background: #2d3748;
+  border-color: #4a5568;
+  color: #a0aec0;
+}
+
+.dark-mode .activity-filter button:hover {
+  background: rgba(255, 192, 203, 0.2);
+}
+
+.dark-mode .activity-filter button.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.dark-mode .activity-item {
+  border-color: #2d3748;
+  background: linear-gradient(to right, var(--dark-color), #2a3141);
+}
+
+.dark-mode .activity-item:hover {
+  background-color: rgba(137, 207, 240, 0.1);
+}
+
+.dark-mode .activity-message {
+  color: white;
+}
+
+.dark-mode .status-card {
+  background-color: var(--dark-color);
+  border-color: #2d3748;
+}
+
+.dark-mode .status-header {
+  border-color: #2d3748;
+  background: linear-gradient(
+    to right,
+    rgba(137, 207, 240, 0.1),
+    var(--dark-color)
+  );
+}
+
+.dark-mode .status-name {
+  color: white;
+}
+
+.dark-mode .metric-name {
+  color: #a0aec0;
+}
+
+.dark-mode .metric-value {
+  color: white;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .dashboard-activity {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .activity-section:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard-activity {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .activity-section:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .activity-section:nth-child(2) {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 576px) {
+  .activity-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .activity-filter {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+
+  .status-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .status-icon {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

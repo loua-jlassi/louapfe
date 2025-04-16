@@ -1,0 +1,606 @@
+/* 
+ * Styles Responsifs
+ * Ce fichier contient toutes les règles pour adapter l'interface aux différents appareils
+ */
+
+/* ========= VARIABLES DE BREAKPOINTS ========= */
+:root {
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+
+  /* Variables pour les tailles de conteneur */
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-xxl: 1320px;
+
+  /* Espacement responsive */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+}
+
+/* ========= CONTENEURS RESPONSIFS ========= */
+
+.container {
+  width: 100%;
+  padding-right: var(--space-md);
+  padding-left: var(--space-md);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: var(--container-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-md);
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: var(--container-lg);
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: var(--container-xl);
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: var(--container-xxl);
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: var(--space-md);
+  padding-left: var(--space-md);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ========= GRILLE RESPONSIVE ========= */
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: calc(var(--space-md) * -1);
+  margin-left: calc(var(--space-md) * -1);
+}
+
+.col {
+  flex: 1 0 0%;
+  padding-right: var(--space-md);
+  padding-left: var(--space-md);
+}
+
+/* Colonnes pour différentes tailles d'écran */
+@media (min-width: 576px) {
+  .col-sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+  }
+  .col-sm-1 {
+    flex: 0 0 auto;
+    width: 8.333333%;
+  }
+  .col-sm-2 {
+    flex: 0 0 auto;
+    width: 16.666667%;
+  }
+  .col-sm-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+  .col-sm-4 {
+    flex: 0 0 auto;
+    width: 33.333333%;
+  }
+  .col-sm-5 {
+    flex: 0 0 auto;
+    width: 41.666667%;
+  }
+  .col-sm-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .col-sm-7 {
+    flex: 0 0 auto;
+    width: 58.333333%;
+  }
+  .col-sm-8 {
+    flex: 0 0 auto;
+    width: 66.666667%;
+  }
+  .col-sm-9 {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+  .col-sm-10 {
+    flex: 0 0 auto;
+    width: 83.333333%;
+  }
+  .col-sm-11 {
+    flex: 0 0 auto;
+    width: 91.666667%;
+  }
+  .col-sm-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-auto {
+    flex: 0 0 auto;
+    width: auto;
+  }
+  .col-md-1 {
+    flex: 0 0 auto;
+    width: 8.333333%;
+  }
+  .col-md-2 {
+    flex: 0 0 auto;
+    width: 16.666667%;
+  }
+  .col-md-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+  .col-md-4 {
+    flex: 0 0 auto;
+    width: 33.333333%;
+  }
+  .col-md-5 {
+    flex: 0 0 auto;
+    width: 41.666667%;
+  }
+  .col-md-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .col-md-7 {
+    flex: 0 0 auto;
+    width: 58.333333%;
+  }
+  .col-md-8 {
+    flex: 0 0 auto;
+    width: 66.666667%;
+  }
+  .col-md-9 {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+  .col-md-10 {
+    flex: 0 0 auto;
+    width: 83.333333%;
+  }
+  .col-md-11 {
+    flex: 0 0 auto;
+    width: 91.666667%;
+  }
+  .col-md-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+  }
+  .col-lg-1 {
+    flex: 0 0 auto;
+    width: 8.333333%;
+  }
+  .col-lg-2 {
+    flex: 0 0 auto;
+    width: 16.666667%;
+  }
+  .col-lg-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+  .col-lg-4 {
+    flex: 0 0 auto;
+    width: 33.333333%;
+  }
+  .col-lg-5 {
+    flex: 0 0 auto;
+    width: 41.666667%;
+  }
+  .col-lg-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .col-lg-7 {
+    flex: 0 0 auto;
+    width: 58.333333%;
+  }
+  .col-lg-8 {
+    flex: 0 0 auto;
+    width: 66.666667%;
+  }
+  .col-lg-9 {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+  .col-lg-10 {
+    flex: 0 0 auto;
+    width: 83.333333%;
+  }
+  .col-lg-11 {
+    flex: 0 0 auto;
+    width: 91.666667%;
+  }
+  .col-lg-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-xl-auto {
+    flex: 0 0 auto;
+    width: auto;
+  }
+  .col-xl-1 {
+    flex: 0 0 auto;
+    width: 8.333333%;
+  }
+  .col-xl-2 {
+    flex: 0 0 auto;
+    width: 16.666667%;
+  }
+  .col-xl-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+  .col-xl-4 {
+    flex: 0 0 auto;
+    width: 33.333333%;
+  }
+  .col-xl-5 {
+    flex: 0 0 auto;
+    width: 41.666667%;
+  }
+  .col-xl-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .col-xl-7 {
+    flex: 0 0 auto;
+    width: 58.333333%;
+  }
+  .col-xl-8 {
+    flex: 0 0 auto;
+    width: 66.666667%;
+  }
+  .col-xl-9 {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+  .col-xl-10 {
+    flex: 0 0 auto;
+    width: 83.333333%;
+  }
+  .col-xl-11 {
+    flex: 0 0 auto;
+    width: 91.666667%;
+  }
+  .col-xl-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/* ========= UTILITAIRES RESPONSIFS ========= */
+
+/* Espacement responsive */
+.p-responsive {
+  padding: var(--space-sm);
+}
+
+.m-responsive {
+  margin: var(--space-sm);
+}
+
+@media (min-width: 576px) {
+  .p-responsive {
+    padding: var(--space-md);
+  }
+
+  .m-responsive {
+    margin: var(--space-md);
+  }
+}
+
+@media (min-width: 992px) {
+  .p-responsive {
+    padding: var(--space-lg);
+  }
+
+  .m-responsive {
+    margin: var(--space-lg);
+  }
+}
+
+/* Visibilité responsive */
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-grid {
+  display: grid !important;
+}
+
+@media (min-width: 576px) {
+  .d-sm-none {
+    display: none !important;
+  }
+  .d-sm-block {
+    display: block !important;
+  }
+  .d-sm-flex {
+    display: flex !important;
+  }
+  .d-sm-grid {
+    display: grid !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .d-md-none {
+    display: none !important;
+  }
+  .d-md-block {
+    display: block !important;
+  }
+  .d-md-flex {
+    display: flex !important;
+  }
+  .d-md-grid {
+    display: grid !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .d-lg-none {
+    display: none !important;
+  }
+  .d-lg-block {
+    display: block !important;
+  }
+  .d-lg-flex {
+    display: flex !important;
+  }
+  .d-lg-grid {
+    display: grid !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .d-xl-none {
+    display: none !important;
+  }
+  .d-xl-block {
+    display: block !important;
+  }
+  .d-xl-flex {
+    display: flex !important;
+  }
+  .d-xl-grid {
+    display: grid !important;
+  }
+}
+
+/* Ordre des flexbox items responsive */
+.order-first {
+  order: -1;
+}
+.order-last {
+  order: 999;
+}
+
+@media (min-width: 576px) {
+  .order-sm-first {
+    order: -1;
+  }
+  .order-sm-last {
+    order: 999;
+  }
+}
+
+@media (min-width: 768px) {
+  .order-md-first {
+    order: -1;
+  }
+  .order-md-last {
+    order: 999;
+  }
+}
+
+@media (min-width: 992px) {
+  .order-lg-first {
+    order: -1;
+  }
+  .order-lg-last {
+    order: 999;
+  }
+}
+
+/* Alignement du texte responsive */
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+@media (min-width: 576px) {
+  .text-sm-center {
+    text-align: center !important;
+  }
+  .text-sm-left {
+    text-align: left !important;
+  }
+  .text-sm-right {
+    text-align: right !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-md-center {
+    text-align: center !important;
+  }
+  .text-md-left {
+    text-align: left !important;
+  }
+  .text-md-right {
+    text-align: right !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .text-lg-center {
+    text-align: center !important;
+  }
+  .text-lg-left {
+    text-align: left !important;
+  }
+  .text-lg-right {
+    text-align: right !important;
+  }
+}
+
+/* ========= UTILITAIRES POUR APPAREILS SPÉCIFIQUES ========= */
+
+/* Styles spécifiques aux écrans tactiles */
+@media (hover: none) {
+  /* Augmente la taille des zones cliquables pour les écrans tactiles */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Ajoute un espacement supplémentaire pour les écrans tactiles */
+  .touch-spacing {
+    margin-bottom: var(--space-lg);
+  }
+}
+
+/* Styles spécifiques aux appareils mobiles */
+@media (max-width: 767px) {
+  /* Taille de police plus grande pour la lisibilité sur mobile */
+  .mobile-text {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Ajuste les éléments qui sont généralement trop larges sur mobile */
+  .mobile-full-width {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Adapte les tableaux pour les petits écrans */
+  .mobile-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* ========= UTILITAIRES D'ORIENTATION ========= */
+
+/* Styles spécifiques à l'orientation portrait */
+@media (orientation: portrait) {
+  .portrait-only {
+    display: block !important;
+  }
+
+  .landscape-only {
+    display: none !important;
+  }
+}
+
+/* Styles spécifiques à l'orientation paysage */
+@media (orientation: landscape) {
+  .portrait-only {
+    display: none !important;
+  }
+
+  .landscape-only {
+    display: block !important;
+  }
+}
+
+/* ========= OPTIMISATIONS POUR IMPRESSION ========= */
+
+@media print {
+  /* Éléments à masquer lors de l'impression */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Couleurs de fond à supprimer pour économiser l'encre */
+  .print-no-bg {
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Force les sauts de page à des endroits spécifiques */
+  .print-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  .print-break-after {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  /* Évite les sauts de page à l'intérieur des éléments */
+  .print-no-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Liens visibles */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+    color: #333;
+  }
+}

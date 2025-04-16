@@ -1,0 +1,466 @@
+/* Styles pour le composant DashboardStats */
+.stats-selector-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.dark-mode .stats-selector-container {
+  background-color: var(--dark-card);
+}
+
+.stats-timeframe {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stats-label {
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.stats-timeframe-select {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background-color: white;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stats-timeframe-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.1);
+}
+
+.dark-mode .stats-timeframe-select {
+  background-color: var(--dark-lighter);
+  border-color: #3a3f48;
+  color: white;
+}
+
+.stats-view-options {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.view-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background-color: white;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-option.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.dark-mode .view-option {
+  background-color: var(--dark-lighter);
+  border-color: #3a3f48;
+  color: white;
+}
+
+.dark-mode .view-option.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-dark);
+}
+
+/* Grille de statistiques */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.admin-stats-grid.animate .admin-stat-card {
+  animation: fade-slide-up 0.5s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.admin-stats-grid.animate .admin-stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.admin-stats-grid.animate .admin-stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.admin-stats-grid.animate .admin-stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.admin-stats-grid.animate .admin-stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fade-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-stat-card {
+  background-color: white;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.admin-stat-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.dark-mode .admin-stat-card {
+  background-color: var(--dark-card);
+  color: white;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.stat-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  background-color: rgba(74, 108, 247, 0.1);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.premium-icon {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+}
+
+.revenue-icon {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.feature-icon {
+  background-color: rgba(253, 126, 20, 0.1);
+  color: #fd7e14;
+}
+
+.stat-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.stat-badge {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: rgba(74, 108, 247, 0.1);
+  color: var(--primary-color);
+}
+
+.stat-badge.premium {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+}
+
+.stat-badge.revenue {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.stat-badge.feature {
+  background-color: rgba(253, 126, 20, 0.1);
+  color: #fd7e14;
+}
+
+.stat-content {
+  flex-grow: 1;
+}
+
+.stat-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.dark-mode .stat-content h3 {
+  color: #b0b0b0;
+}
+
+.stat-value-container {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.stat-growth {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.stat-growth.positive {
+  color: #28a745;
+}
+
+.stat-growth.negative {
+  color: #dc3545;
+}
+
+.stat-percentage {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.dark-mode .stat-percentage {
+  color: #4dabf7;
+}
+
+.stat-details {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.stat-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.dark-mode .stat-detail {
+  color: #b0b0b0;
+}
+
+.stat-detail.premium {
+  color: #ffc107;
+}
+
+.stat-detail.free {
+  color: var(--text-light);
+}
+
+.detail-label {
+  color: var(--text-lighter);
+  font-size: 0.85rem;
+}
+
+.detail-value {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.dark-mode .detail-value {
+  color: white;
+}
+
+.stat-chart {
+  margin-top: 1rem;
+  height: 50px;
+}
+
+.mini-sparkline {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  gap: 2px;
+}
+
+.sparkline-bar {
+  flex: 1;
+  min-width: 3px;
+  border-radius: 2px 2px 0 0;
+  transition: height 0.3s ease;
+}
+
+/* Styles spécifiques pour la carte Premium */
+.admin-stat-card.premium-card {
+  background: linear-gradient(135deg, #fff8e1 0%, white 100%);
+}
+
+.dark-mode .admin-stat-card.premium-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 193, 7, 0.1) 0%,
+    var(--dark-card) 100%
+  );
+}
+
+.conversion-progress {
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  height: 6px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.dark-mode .progress-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #ffc107;
+  border-radius: 3px;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: var(--text-lighter);
+}
+
+/* Styles spécifiques pour la carte Revenue */
+.admin-stat-card.revenue-card {
+  background: linear-gradient(135deg, #f0fff4 0%, white 100%);
+}
+
+.dark-mode .admin-stat-card.revenue-card {
+  background: linear-gradient(
+    135deg,
+    rgba(40, 167, 69, 0.1) 0%,
+    var(--dark-card) 100%
+  );
+}
+
+/* Styles spécifiques pour la carte Feature */
+.admin-stat-card.feature-card {
+  position: relative;
+}
+
+.features-distribution {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feature-type {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feature-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.feature-icon.premium {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+}
+
+.feature-icon.free {
+  background-color: rgba(74, 108, 247, 0.1);
+  color: var(--primary-color);
+}
+
+.feature-info {
+  flex-grow: 1;
+}
+
+.feature-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.dark-mode .feature-label {
+  color: white;
+}
+
+.feature-count {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.feature-percent {
+  font-weight: 600;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .admin-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-selector-container {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .stats-view-options {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
