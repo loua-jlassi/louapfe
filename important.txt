@@ -1,0 +1,19 @@
+Ajouter un historique des projets générés :
+Créez une interface pour voir les projets précédemment générés
+Permettez de cloner ou modifier ces projets (fait)
+
+
+
+Améliorer l'expérience utilisateur :
+Ajoutez des animations et transitions entre les pages
+Optimisez l'interface pour différents appareils
+Améliorez l'accessibilité ( fait)
+
+
+Créer une page d'aide et documentation :
+Ajoutez des tutoriels sur l'utilisation de l'application
+Incluez une FAQ plus complète et des guides vidéo ( bfait )
+
+Développer une interface de test/prévisualisation :
+Permettez aux utilisateurs de voir comment les différentes fonctionnalités s'assembleraient
+Simulez le résultat final de la génération du projet

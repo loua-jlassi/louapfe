@@ -1,0 +1,20 @@
+stages:
+  - test
+  - api
+
+test_backend:
+  stage: test
+  script:
+    - echo "Tests unitaires ici (npm test, etc.)"
+
+add_feature_api:
+  stage: api
+  image: curlimages/curl:latest
+  script:
+    - |
+      curl -X POST http://backend:3000/api/features \
+        -H "Content-Type: application/json" \
+        -d '{
+          "name": "Module CI/CD",
+          "description": "Ajouté automatiquement depuis le pipeline GitLab"
+        }'
